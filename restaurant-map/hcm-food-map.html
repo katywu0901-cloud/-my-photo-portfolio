@@ -183,18 +183,19 @@ function centerOn(lat,lon){const [x,y]=proj(lat,lon);if(view.s<1.2)view.s=1.2;vi
 
 const visible=()=>{const q=$("#q").value.trim().toLowerCase();return DATA.filter(d=>on.has(d.cat)&&(!q||[d.name,d.zh,d.area,d.addr,d.sig,d.menu,d.cat].join(" ").toLowerCase().includes(q)))};
 const gmaps=d=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(d.approx?d.name+" "+d.area.replace(/[^\x00-\x7FÀ-ỹ ]/g,"")+" Ho Chi Minh":d.name+" "+d.addr);
+const hm=m=>m<60?m+" 分鐘":Math.floor(m/60)+" 小時"+(m%60?" "+m%60+" 分":"");
 const rng=s=>{const [a,b]=s.split("–");return a===b?"約 "+a:s};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const srcLabel=u=>u.includes("tiktok")?"TikTok":u.includes("facebook")?"Facebook":u.includes("goo.gl")?"Google 地圖":"連結";
 
 function render(){
   let items=visible();
-  if(home)items=items.map(d=>({...d,km:km(home[0],home[1],d.lat,d.lon)})).sort((a,b)=>a.km-b.km);
+  if(home)items=items.map(d=>({...d,km:home===HOTEL&&d.trip?d.trip.walk_km:km(home[0],home[1],d.lat,d.lon)})).sort((a,b)=>a.km-b.km);
   $("#count").textContent=DATA.length;
   $("#list").innerHTML=items.map(d=>`
     <article class="card${active===d.id?" active":""}" id="c${d.id}" data-id="${d.id}" style="--c:var(${CATS[d.cat]})" tabindex="0">
       <h3><span class="num">${d.id}</span><span>${esc(d.zh)}</span></h3>
-      <div class="meta"><span class="tag">${d.cat}</span><span>${esc(d.area)}</span>${d.approx?'<span class="badge">位置約略</span>':""}${d.trip&&home===HOTEL?`<span class="dist">${d.trip.mode} · ${d.trip.mode.startsWith("走路")?"走路 "+d.trip.walk_min:"車程約 "+d.trip.car_min} 分鐘</span>`:d.km!=null?`<span class="dist">距此處約 ${d.km.toFixed(1)} km</span>`:""}</div>
+      <div class="meta"><span class="tag">${d.cat}</span><span>${esc(d.area)}</span>${d.approx?'<span class="badge">位置約略</span>':""}${d.trip&&home===HOTEL?`<span class="dist">距離 ${d.trip.walk_km} km · 走路 ${hm(d.trip.walk_min)}</span>`:d.km!=null?`<span class="dist">距此處約 ${d.km.toFixed(1)} km</span>`:""}</div>
       <dl>
         <dt>店名</dt><dd>${esc(d.name)}</dd>
         <dt>地址</dt><dd>${esc(d.addr)}</dd>
