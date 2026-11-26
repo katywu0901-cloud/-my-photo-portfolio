@@ -700,12 +700,13 @@
 "lon": 106.6795,
 "approx": true,
 "sig": "3 層樓、約 50 個越南 local brand 的集合空間",
-"menu": "dottie、OLV、Whys、The Aura 等品牌",
+"menu": "dottie、OLV、Whys、The Aura 等品牌；從甜美風、上班穿搭到男生 T 恤都有",
 "price": "部分品牌一件約 100,000–200,000 VND",
 "hours": "2026/5/16 開幕",
 "phone": "",
 "src": [
-"https://vt.tiktok.com/ZSsh8MtQk/"
+"https://vt.tiktok.com/ZSsh8MtQk/",
+"https://vt.tiktok.com/ZSsh8nXFP/"
 ],
 "note": "可以一次試很多品牌，找適合自己的風格",
 "trip": {
@@ -716,6 +717,38 @@
 "rush_min": 20,
 "grabcar": "45k–55k",
 "grabbike": "20k–25k",
+"mode": "Grab",
+"tip": "建議叫 GrabCar／GrabBike"
+}
+},
+{
+"id": 24,
+"name": "Phố thời trang Nguyễn Trãi (Q.1)",
+"zh": "Nguyễn Trãi 服飾街（1郡）",
+"cat": "購物",
+"area": "1郡 Bến Thành／Cầu Ông Lãnh",
+"addr": "Đường Nguyễn Trãi, Q.1, TP.HCM（Nguyễn Văn Cừ 到 Cống Quỳnh 一帶）",
+"lat": 10.7662,
+"lon": 106.6884,
+"approx": true,
+"sig": "一條街上很多越南 local brand，店都靠得很近",
+"menu": "Care Club、Cherry Room（同一家公司，部落客說一定先逛）；另有一家洋裝店，一件不到 50 萬 VND，可免費修改（店名影片沒說，Hai Bà Trưng 也有分店）；LEVENTS 也在這條街",
+"price": "洋裝約 500,000 VND 以下；其他店待確認",
+"hours": "待確認",
+"phone": "",
+"src": [
+"https://vt.tiktok.com/ZSshLSJYo/",
+"https://vt.tiktok.com/ZSsh8w52t/"
+],
+"note": "是一整條街，地圖標在街上大約位置；那家洋裝店只有單一尺寸",
+"trip": {
+"road_km": 2.1,
+"walk_km": 2.1,
+"walk_min": 30,
+"car_min": 10,
+"rush_min": 15,
+"grabcar": "25k–35k",
+"grabbike": "10k–15k",
 "mode": "Grab",
 "tip": "建議叫 GrabCar／GrabBike"
 }
