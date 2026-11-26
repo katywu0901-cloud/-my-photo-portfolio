@@ -84,7 +84,7 @@ dd{margin:0;overflow-wrap:anywhere}
   <header>
     <div>
       <h1>胡志明美食地圖</h1>
-      <p class="sub">整理自你分享的 24 個連結 · 共 <span id="count"></span> 個地點 · 虛線圖釘表示位置是推估的</p>
+      <p class="sub">住宿：Palace Hotel Saigon（⌂）· 整理自你分享的連結 · 共 <span id="count"></span> 個地點 · 虛線圖釘表示位置是推估的</p>
     </div>
   </header>
 
@@ -101,12 +101,12 @@ dd{margin:0;overflow-wrap:anywhere}
         <div class="attrib">© OpenStreetMap contributors</div>
       </div>
       <div class="homebar">
-        <label for="homeIn">我家</label>
+        <label for="homeIn">我的飯店</label>
         <input id="homeIn" placeholder="貼上座標，例如 10.7769, 106.7009">
         <button class="btn" id="homeSet">設定</button>
         <button class="btn primary" id="homePick">在地圖上點選</button>
-        <button class="btn" id="homeClear" hidden>清除</button>
-        <p class="hint" id="homeHint">在 Google 地圖長按你家位置即可複製座標，或按「在地圖上點選」直接點地圖。設定後清單會依距離排序。</p>
+        <button class="btn" id="homeClear" hidden>改回飯店</button>
+        <p class="hint" id="homeHint">目前是 Palace Hotel Saigon（56-66 Nguyễn Huệ, 1郡），清單依離飯店的直線距離由近到遠排。要換位置可以貼座標，或按「在地圖上點選」。</p>
       </div>
     </section>
 
@@ -138,7 +138,8 @@ const unproj=(x,y)=>{const n=2**BASE.z,lon=(x/256+BASE.x0)/n*360-180,m=Math.PI*(
 const km=(a,b,c,d)=>{const R=6371,t=x=>x*Math.PI/180,h=Math.sin(t(c-a)/2)**2+Math.cos(t(a))*Math.cos(t(c))*Math.sin(t(d-b)/2)**2;return 2*R*Math.asin(Math.sqrt(h))};
 const store={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 
-let view={s:1,x:0,y:0},active=null,home=store.get("home"),picking=false;
+const HOTEL=[10.7753,106.7027];
+let view={s:1,x:0,y:0},active=null,home=store.get("home")||HOTEL,picking=false;
 const on=new Set(Object.keys(CATS));
 
 function apply(){
@@ -174,7 +175,7 @@ function render(){
   $("#list").innerHTML=items.map(d=>`
     <article class="card${active===d.id?" active":""}" id="c${d.id}" data-id="${d.id}" style="--c:var(${CATS[d.cat]})" tabindex="0">
       <h3><span class="num">${d.id}</span><span>${esc(d.zh)}</span></h3>
-      <div class="meta"><span class="tag">${d.cat}</span><span>${esc(d.area)}</span>${d.approx?'<span class="badge">位置約略</span>':""}${d.km!=null?`<span class="dist">距我家約 ${d.km.toFixed(1)} km</span>`:""}</div>
+      <div class="meta"><span class="tag">${d.cat}</span><span>${esc(d.area)}</span>${d.approx?'<span class="badge">位置約略</span>':""}${d.km!=null?`<span class="dist">距飯店約 ${d.km.toFixed(1)} km</span>`:""}</div>
       <dl>
         <dt>店名</dt><dd>${esc(d.name)}</dd>
         <dt>地址</dt><dd>${esc(d.addr)}</dd>
@@ -191,9 +192,9 @@ function render(){
   items.forEach(d=>{const b=document.createElement("button");b.className="pin"+(d.approx?" approx":"")+(active===d.id?" active":"");b.style.setProperty("--c",`var(${CATS[d.cat]})`);
     b.setAttribute("aria-label",d.zh);[b._x,b._y]=proj(d.lat,d.lon);b.innerHTML=`<span class="dot"><b>${d.id}</b></span>`;
     b.onclick=e=>{e.stopPropagation();select(d.id,true)};pins.appendChild(b)});
-  if(home){const h=document.createElement("div");h.className="pin home";[h._x,h._y]=proj(home[0],home[1]);h.innerHTML='<span class="dot"><b>⌂</b></span>';h.title="我家";pins.appendChild(h)}
+  if(home){const h=document.createElement("div");h.className="pin home";[h._x,h._y]=proj(home[0],home[1]);h.innerHTML='<span class="dot"><b>⌂</b></span>';h.title="Palace Hotel Saigon（我的飯店）";pins.appendChild(h)}
   if(active){const d=DATA.find(x=>x.id===active);if(d&&items.some(x=>x.id===active)){const t=document.createElement("div");t.className="tip";[t._x,t._y]=proj(d.lat,d.lon);t.innerHTML=`<strong>${esc(d.zh)}</strong>${esc(d.sig)}<br><span style="color:var(--muted)">${esc(d.price)}</span>`;pins.appendChild(t)}}
-  $("#homeClear").hidden=!home;
+  $("#homeClear").hidden=home===HOTEL;
   apply();
 }
 function select(id,scroll){active=active===id&&scroll?null:id;render();if(active){const d=DATA.find(x=>x.id===id);if(!scroll)centerOn(d.lat,d.lon);if(scroll)$("#c"+id)?.scrollIntoView({block:"nearest",behavior:"smooth"})}}
@@ -213,12 +214,12 @@ $("#zin").onclick=()=>zoomAt(1.4,map.clientWidth/2,map.clientHeight/2);
 $("#zout").onclick=()=>zoomAt(1/1.4,map.clientWidth/2,map.clientHeight/2);
 $("#zfit").onclick=fit;
 
-function setHome(ll){home=[+ll[0].toFixed(6),+ll[1].toFixed(6)];store.set("home",home);picking=false;map.classList.remove("picking");$("#homePick").textContent="在地圖上點選";$("#homeIn").value=home.join(", ");$("#homeHint").textContent="已設定我家位置，清單已依直線距離排序。";render()}
+function setHome(ll){home=[+ll[0].toFixed(6),+ll[1].toFixed(6)];store.set("home",home);picking=false;map.classList.remove("picking");$("#homePick").textContent="在地圖上點選";$("#homeIn").value=home.join(", ");$("#homeHint").textContent="位置已更新，清單已依直線距離重新排序。";render()}
 $("#homePick").onclick=()=>{picking=!picking;map.classList.toggle("picking",picking);$("#homePick").textContent=picking?"點地圖上你家的位置…":"在地圖上點選"};
 $("#homeSet").onclick=()=>{const m=$("#homeIn").value.match(/(-?\d+(?:\.\d+)?)\s*[, ]\s*(-?\d+(?:\.\d+)?)/);
   if(!m){$("#homeHint").textContent="座標格式看不懂，請貼上像「10.7769, 106.7009」這樣的緯度、經度。";return}
   const lat=+m[1],lon=+m[2];if(lat<10.6||lat>11||lon<106.5||lon>107){$("#homeHint").textContent="這個座標不在胡志明市範圍內，請再確認一次。";return}setHome([lat,lon])};
-$("#homeClear").onclick=()=>{home=null;store.set("home",null);$("#homeIn").value="";$("#homeHint").textContent="已清除。";render()};
+$("#homeClear").onclick=()=>{home=HOTEL;store.set("home",null);$("#homeIn").value=HOTEL.join(", ");$("#homeHint").textContent="已改回 Palace Hotel Saigon。";render()};
 if(home)$("#homeIn").value=home.join(", ");
 
 new ResizeObserver(()=>{clamp();apply()}).observe(map);
