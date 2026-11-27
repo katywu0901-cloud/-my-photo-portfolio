@@ -936,35 +936,5 @@
 "mode": "走路或 GrabBike",
 "tip": "走路約 30 分鐘，晚上或熱天建議叫 GrabBike"
 }
-},
-{
-"id": 31,
-"name": "Aroma Spa Foot & Body Massage",
-"zh": "Aroma 腳底按摩（平價）",
-"cat": "按摩",
-"tier": "平價",
-"area": "1郡",
-"addr": "222 Đề Thám, Q.1, TP.HCM",
-"lat": 10.763,
-"lon": 106.696,
-"approx": false,
-"sig": "在背包客街附近，腳底按摩便宜大碗",
-"menu": "腳底按摩、全身按摩",
-"price": "平價，請洽店家",
-"hours": "待確認",
-"phone": "",
-"src": [],
-"note": "在 Bùi Viện 背包客街附近",
-"trip": {
-"road_km": 1.9,
-"walk_km": 2.0,
-"walk_min": 25,
-"car_min": 10,
-"rush_min": 10,
-"grabcar": "25k–35k",
-"grabbike": "10k–15k",
-"mode": "走路或 GrabBike",
-"tip": "走路約 25 分鐘，晚上或熱天建議叫 GrabBike"
-}
 }
 ]
