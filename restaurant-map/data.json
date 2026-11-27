@@ -754,36 +754,6 @@
 }
 },
 {
-"id": 25,
-"name": "Sen Spa",
-"zh": "Sen Spa 蓮花 Spa",
-"cat": "按摩",
-"tier": "中高價位",
-"area": "1郡",
-"addr": "10B1 Lê Thánh Tôn, Q.1, TP.HCM",
-"lat": 10.7797,
-"lon": 106.7047,
-"approx": false,
-"sig": "老字號，常被說是第一郡的知名 spa",
-"menu": "按摩、臉部保養、美容療程",
-"price": "中高價位，請洽店家",
-"hours": "待確認",
-"phone": "",
-"src": [],
-"note": "環境好，適合第一次來",
-"trip": {
-"road_km": 0.7,
-"walk_km": 0.7,
-"walk_min": 10,
-"car_min": 5,
-"rush_min": 5,
-"grabcar": "25k–35k",
-"grabbike": "10k–15k",
-"mode": "走路",
-"tip": "走路約 10 分鐘就到"
-}
-},
-{
 "id": 26,
 "name": "Miu Miu Spa",
 "zh": "Miu Miu Spa",
@@ -935,6 +905,100 @@
 "grabbike": "10k–15k",
 "mode": "走路或 GrabBike",
 "tip": "走路約 30 分鐘，晚上或熱天建議叫 GrabBike"
+}
+},
+{
+"id": 32,
+"name": "Aspire Billiards Club",
+"zh": "Aspire 撞球俱樂部",
+"cat": "撞球",
+"area": "新富郡 Tân Phú",
+"addr": "14A Lũy Bán Bích, Tân Thới Hoà, Tân Phú, TP.HCM",
+"lat": 10.762,
+"lon": 106.6325,
+"approx": true,
+"sig": "比賽級球檯，座椅舒服，從開球桿、跳桿到碳纖維球桿都有",
+"menu": "撞球；有 2 小時、3 小時套餐，可加飲料和點心",
+"price": "待確認（有時數套餐）",
+"hours": "早上也有營業",
+"phone": "0799 628 628",
+"src": [
+"https://vt.tiktok.com/ZSskfsvJc/",
+"https://vt.tiktok.com/ZSsk5CuJ1/"
+],
+"note": "地址來自店家 TikTok 簡介；門牌位置是依路段推估的",
+"trip": {
+"road_km": 9.4,
+"walk_km": 9.1,
+"walk_min": 125,
+"car_min": 30,
+"rush_min": 50,
+"grabcar": "100k–125k",
+"grabbike": "40k–55k",
+"mode": "Grab（遠）",
+"tip": "車程較遠，建議同一區排同一天"
+}
+},
+{
+"id": 33,
+"name": "MIA TOWN",
+"zh": "MIA TOWN 撞球＋電競",
+"cat": "撞球",
+"area": "10郡 Hòa Hưng",
+"addr": "583B Sư Vạn Hạnh, Phường Hòa Hưng, TP.HCM",
+"lat": 10.7771,
+"lon": 106.6658,
+"approx": false,
+"sig": "新開幕、全面禁菸的現代撞球館",
+"menu": "撞球、電競 PC、PS5、兒童咖啡",
+"price": "待確認",
+"hours": "24 小時營業",
+"phone": "0285 558 6868",
+"src": [
+"https://vt.tiktok.com/ZSsk5QDoP/"
+],
+"note": "地址和時間來自店家 TikTok 簡介",
+"trip": {
+"road_km": 5.0,
+"walk_km": 5.4,
+"walk_min": 75,
+"car_min": 20,
+"rush_min": 30,
+"grabcar": "55k–70k",
+"grabbike": "25k–30k",
+"mode": "Grab",
+"tip": "建議叫 GrabCar／GrabBike"
+}
+},
+{
+"id": 34,
+"name": "Câu lạc bộ bida Bình Thạnh (STEE 影片)",
+"zh": "平盛豪華撞球俱樂部",
+"cat": "撞球",
+"area": "平盛郡 Bình Thạnh",
+"addr": "402 Nơ Trang Long, Bình Thạnh（依影片字幕推測，待確認）",
+"lat": 10.818,
+"lon": 106.6984,
+"approx": true,
+"sig": "號稱目前西貢投資最多的撞球俱樂部（約 100 億 VND）",
+"menu": "約 38 張球檯，含 2 張 Diamond 檯和 APEX 檯",
+"price": "待確認",
+"hours": "待確認",
+"phone": "",
+"src": [
+"https://vt.tiktok.com/ZSskPKvc3/"
+],
+"note": "店名和地址是從影片語音字幕聽出來的，去之前請先在 Google 地圖確認",
+"trip": {
+"road_km": 5.9,
+"walk_km": 5.9,
+"walk_min": 80,
+"car_min": 20,
+"rush_min": 30,
+"grabcar": "65k–80k",
+"grabbike": "25k–35k",
+"mode": "Grab",
+"tip": "建議叫 GrabCar／GrabBike"
 }
 }
 ]
